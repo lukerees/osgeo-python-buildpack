@@ -5,8 +5,6 @@ PY_MAPNIK="https://s3.amazonaws.com/boundlessps-public/cf/lib/site-packages.tar.
 WHEELS=("https://s3.amazonaws.com/boundlessps-public/cf/wheels/GDAL-2.1.0-cp27-cp27m-linux_x86_64.whl")
 WHEELS+=("https://s3.amazonaws.com/boundlessps-public/cf/wheels/numpy-1.10.4-cp27-cp27m-linux_x86_64.whl")
 WHEELS+=("https://s3.amazonaws.com/boundlessps-public/cf/wheels/pyproj-1.9.5.1-cp27-cp27m-linux_x86_64.whl")
-#WHEELS+=("https://s3.amazonaws.com/boundlessps-public/cf/wheels/django_auth_ldap-1.2.8-py2-none-any.whl")
-#WHEELS+=("https://s3.amazonaws.com/boundlessps-public/cf/wheels/python_ldap-2.4.25-cp27-cp27m-linux_x86_64.whl")
 PKG_CONFIG_PATH="/app/.heroku/vendor/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 source $BIN_DIR/utils

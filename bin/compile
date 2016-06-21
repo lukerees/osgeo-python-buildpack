@@ -202,7 +202,7 @@ source $BIN_DIR/steps/python
 source $BIN_DIR/steps/setuptools
 
 # Uninstall removed dependencies with Pip.
-# source $BIN_DIR/steps/pip-uninstall
+source $BIN_DIR/steps/pip-uninstall
 
 # Mercurial support.
 source $BIN_DIR/steps/mercurial
