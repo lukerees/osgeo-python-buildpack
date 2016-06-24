@@ -1,24 +1,21 @@
 ---
-language: python
+language: osgeo-python
 
 url_to_dependency_map:
   - match: python-(\d+\.\d+\.\d+)
     name: python
     version: $1
-  - match: libmemcache
-    name: libmemcache
-    version: 1.0.18
+  - match: vendor
+    name: vendor
+    version: 1.0.0
+  - match: site-packages
+    name: site-packages
+    version: 1.0.0
   - match: libffi
     name: libffi
     version: "3.1"
 
 dependencies:
-  - name: libmemcache
-    version: 1.0.18
-    cf_stacks:
-      - cflinuxfs2
-    uri: https://pivotal-buildpacks.s3.amazonaws.com/python/binaries/cflinuxfs2/libmemcache.tar.gz
-    md5: 6b40600ab7c5bd52b5c6eedd18efb651
   - name: libffi
     version: "3.1"
     cf_stacks:
@@ -37,6 +34,7 @@ exclude_files:
   - .gitignore
   - .gitmodules
   - cf_spec/
+  - vagrant-lib-build/
   - log/
   - test/
   - bin/package

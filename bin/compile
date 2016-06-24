@@ -44,9 +44,6 @@ PYTHON_EXE="/app/.heroku/python/bin/python"
 PIP_VERSION="8.1.2"
 SETUPTOOLS_VERSION="22.0.0"
 
-# PIP Exclusions
-PIP_EXCLUDES="GDAL pyproj numpy django_auth_ldap python_ldap"
-
 # Common Problem Warnings
 export WARNINGS_LOG=$(mktemp)
 
@@ -134,21 +131,14 @@ export PKG_CONFIG_PATH=/app/.heroku/vendor/lib/pkg-config:$BUILD_DIR/.heroku/ven
 cd $BUILD_DIR
 
 # Warn for lack of Procfile.
-#if [[ ! -f Procfile ]]; then
-#  puts-warn 'Warning: Your application is missing a Procfile. This file tells Heroku how to run your application.'
-#  puts-warn 'Learn more: https://devcenter.heroku.com/articles/procfile'
-#fi
+if [[ ! -f Procfile ]]; then
+  puts-warn 'Warning: No Procfile present, assuming you are using a command in manifest.yml.'
+fi
 
 # Experimental pre_compile hook.
 bpwatch start pre_compile
   source $BIN_DIR/steps/hooks/pre_compile
 bpwatch stop pre_compile
-
-# If no requirements given, assume `setup.py develop`.
-if [ ! -f requirements.txt ]; then
-  echo "-e ." > requirements.txt
-fi
-
 
 # Sticky runtimes.
 if [ -f $CACHE_DIR/.heroku/python-version ]; then
@@ -163,8 +153,8 @@ else
 fi
 
 # If no runtime given, assume default version.
-if [ ! -f runtime.txt ]; then
-  echo $DEFAULT_PYTHON_VERSION > runtime.txt
+if [ ! -f cf/runtime.txt ]; then
+  echo $DEFAULT_PYTHON_VERSION > cf/runtime.txt
 fi
 
 # ### The Cache
@@ -215,9 +205,6 @@ source $BIN_DIR/steps/cryptography
 
 # Geospatial support.
 source $BIN_DIR/steps/geospatial
-
-# Experimental wheel support
-source $BIN_DIR/steps/wheels
 
 # Install dependencies with Pip.
 source $BIN_DIR/steps/pip-install

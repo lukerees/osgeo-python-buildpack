@@ -15,10 +15,6 @@ else
     /app/.heroku/python/bin/pip install -r cf/requirements.txt --exists-action=w --src=./.heroku/src | cleanup | indent
     cp cf/requirements.txt .heroku/python/requirements-declared.txt
     /app/.heroku/python/bin/pip freeze > .heroku/python/requirements-installed.txt
-  else
-    /app/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src | cleanup | indent
-    cp requirements.txt .heroku/python/requirements-declared.txt
-    /app/.heroku/python/bin/pip freeze > .heroku/python/requirements-installed.txt
   fi
 fi
 [ ! ${FRESH_PYTHON:-} ] && bpwatch stop pip_install

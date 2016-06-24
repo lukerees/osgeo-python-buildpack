@@ -1,7 +1,4 @@
-PYTHON_VERSION=$(cat runtime.txt)
-if [ -f cf/runtime.txt ]; then
-  PYTHON_VERSION=$(cat cf/runtime.txt)
-fi
+PYTHON_VERSION=$(cat cf/runtime.txt)
 
 # Install Python.
 if [ -f .heroku/python-version ]; then
